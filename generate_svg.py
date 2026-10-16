@@ -1,0 +1,128 @@
+#!/usr/bin/env python3
+"""
+Generates an animated retro-modern terminal SVG for GitHub Profile README.
+Uses pure SVG and CSS @keyframes animation (compatible with all modern browsers & GitHub).
+"""
+
+import os
+from pathlib import Path
+
+SVG_CONTENT = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 440" width="100%" height="440">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161b22" />
+      <stop offset="100%" stop-color="#0d1117" />
+    </linearGradient>
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#58a6ff" />
+      <stop offset="50%" stop-color="#bc8cff" />
+      <stop offset="100%" stop-color="#3fb950" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="glow" />
+      <feComposite in="SourceGraphic" in2="glow" operator="over" />
+    </filter>
+  </defs>
+
+  <style>
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 6px #3fb950); }
+      100% { transform: scale(1); opacity: 0.8; }
+    }
+
+    .term-bg { fill: #0d1117; rx: 12px; }
+    .term-border { stroke: url(#borderGrad); stroke-width: 1.5; fill: none; rx: 12px; }
+    .term-header { fill: url(#headerGrad); rx: 12px; }
+    .term-title { fill: #8b949e; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 13px; font-weight: 600; }
+    .term-code { font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace; font-size: 14.5px; }
+
+    .line1 { fill: #58a6ff; font-weight: bold; animation: fadeIn 0.4s ease-out 0.2s both; }
+    .line2 { fill: #7ee787; animation: fadeIn 0.5s ease-out 0.7s both; }
+    .line3 { fill: #e3b341; animation: fadeIn 0.5s ease-out 1.2s both; }
+    .line4 { fill: #d2a8ff; animation: fadeIn 0.5s ease-out 1.7s both; }
+    .line5 { fill: #79c0ff; animation: fadeIn 0.5s ease-out 2.2s both; }
+    .line6 { fill: #56d364; font-weight: bold; animation: fadeIn 0.5s ease-out 2.7s both; }
+    .cursor { fill: #58a6ff; animation: blink 0.8s infinite; }
+    .badge-pulse { animation: pulse 2.5s infinite ease-in-out; transform-origin: 790px 405px; }
+  </style>
+
+  <!-- Window Container -->
+  <rect x="2" y="2" width="846" height="436" class="term-bg" />
+  <rect x="2" y="2" width="846" height="42" class="term-header" />
+  <line x1="2" y1="44" x2="848" y2="44" stroke="#30363d" stroke-width="1" />
+  <rect x="2" y="2" width="846" height="436" class="term-border" />
+
+  <!-- Mac Control Dots -->
+  <circle cx="24" cy="23" r="6" fill="#ff5f56" />
+  <circle cx="44" cy="23" r="6" fill="#ffbd2e" />
+  <circle cx="64" cy="23" r="6" fill="#27c93f" />
+
+  <!-- Window Header Title -->
+  <text x="425" y="27" text-anchor="middle" class="term-title">bloders@systems-node:~ (python3)</text>
+
+  <!-- Terminal Content Lines -->
+  <g transform="translate(30, 80)">
+    <!-- Command Prompt -->
+    <text x="0" y="0" class="term-code line1">
+      <tspan fill="#ff7b72">❯</tspan> <tspan fill="#3fb950">~</tspan> python3 bloders.py --inspect --mode=live
+    </text>
+
+    <!-- Output Lines -->
+    <text x="0" y="38" class="term-code line2">
+      <tspan fill="#3fb950">[✓]</tspan> Identity: <tspan fill="#ffffff" font-weight="bold">Bloders</tspan> (@Bloders-hub) — Systems &amp; Distributed Infra Engineer
+    </text>
+
+    <text x="0" y="76" class="term-code line3">
+      <tspan fill="#e3b341">[✓]</tspan> Test Armor: <tspan fill="#58a6ff">100/100 (Pytest / Vitest / RTL)</tspan> • Zero-Regression Guarantee
+    </text>
+
+    <text x="0" y="114" class="term-code line4">
+      <tspan fill="#bc8cff">[✓]</tspan> Tech Arsenal: Python • TypeScript • Docker • Linux POSIX • PostgreSQL • Redis
+    </text>
+
+    <text x="0" y="152" class="term-code line5">
+      <tspan fill="#79c0ff">[✓]</tspan> Philosophy: <tspan fill="#f0883e">"I don't just fix bugs, I teach them to pay rent." 🐛🏠</tspan>
+    </text>
+
+    <text x="0" y="190" class="term-code line6">
+      <tspan fill="#56d364">[✓]</tspan> Status: <tspan fill="#3fb950">● ONLINE</tspan> — Open for High-Impact Contributions &amp; Bounties
+    </text>
+
+    <!-- Interactive Prompt ready for input -->
+    <text x="0" y="235" class="term-code" fill="#ff7b72" font-weight="bold">
+      ❯ <tspan fill="#3fb950">~</tspan> <tspan fill="#8b949e">ready_to_ship_clean_code()</tspan><rect x="238" y="222" width="9" height="17" class="cursor" />
+    </text>
+  </g>
+
+  <!-- Live Pulse Beacon Widget in Footer -->
+  <g class="badge-pulse">
+    <circle cx="790" cy="405" r="7" fill="#238636" opacity="0.4" />
+    <circle cx="790" cy="405" r="4.5" fill="#3fb950" />
+  </g>
+  <text x="775" y="409" text-anchor="end" fill="#8b949e" font-family="'JetBrains Mono', monospace" font-size="11.5">SYS_OK: 100%</text>
+</svg>
+"""
+
+def main():
+    assets_dir = Path(__file__).resolve().parent / "assets"
+    assets_dir.mkdir(parents=True, exist_ok=True)
+    svg_path = assets_dir / "terminal_animation.svg"
+    with open(svg_path, "w", encoding="utf-8") as f:
+        f.write(SVG_CONTENT.strip())
+    print(f"[OK] Generated animated terminal SVG at: {svg_path}")
+
+if __name__ == "__main__":
+    main()
