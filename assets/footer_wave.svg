@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 110" width="100%" height="110">
+  <defs>
+    <linearGradient id="footerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#58a6ff" />
+      <stop offset="50%" stop-color="#bc8cff" />
+      <stop offset="100%" stop-color="#3fb950" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    .footer-text {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      fill: #8b949e;
+      letter-spacing: 1px;
+    }
+  </style>
+
+  <rect x="0" y="0" width="900" height="110" rx="12" fill="#0d1117" />
+  <rect x="1" y="1" width="898" height="108" rx="12" fill="none" stroke="url(#footerGrad)" stroke-width="1.2" opacity="0.6" />
+
+  <!-- Wave Lines -->
+  <path d="M 0,20 Q 225,45 450,20 T 900,20" fill="none" stroke="url(#footerGrad)" stroke-width="1.8" opacity="0.4" />
+  <path d="M 0,35 Q 225,60 450,35 T 900,35" fill="none" stroke="url(#footerGrad)" stroke-width="2.2" opacity="0.8" />
+
+  <text x="450" y="80" text-anchor="middle" class="footer-text">
+    Crafted with Python, Passion &amp; 100% Test Armor by <tspan fill="#58a6ff" font-weight="bold">@Bloders-hub</tspan> 🚀
+  </text>
+</svg>

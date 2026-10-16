@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- Header Banner -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=1,11,21,31&height=220&section=header&text=BLODERS%20LAB&fontSize=52&fontAlignY=38&desc=Systems%20%26%20Distributed%20Infrastructure%20Engineer&descAlignY=58&descAlign=50" width="100%" alt="Bloders Lab Header" />
+<img src="assets/header_banner.svg" width="100%" alt="Bloders Lab Header" />
 
 <!-- Animated Typing Text -->
 <a href="https://github.com/Bloders-hub">
@@ -103,7 +103,7 @@ if __name__ == "__main__":
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=1,11,21,31&height=100&section=footer" width="100%" alt="Footer" />
+<img src="assets/footer_wave.svg" width="100%" alt="Footer" />
 
 <sub>Crafted with passion, Python &amp; precision by <a href="https://github.com/Bloders-hub">@Bloders-hub</a> 🚀</sub>
 
