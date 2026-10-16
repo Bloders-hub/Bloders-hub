@@ -87,7 +87,6 @@ if __name__ == "__main__":
 ### 🏆 Highlighted Open-Source Track Record
 
 * 🚀 **Stellar Creator Portfolio**: Merged infrastructure upgrade adding automated `make dev` local development compose workflows ([PR #1633](https://github.com/yosemite01/stellar-creator-portfolio/pull/1633)).
-* 📐 **Stellar Creator Portfolio**: Authored full platform architecture blueprint, system topology, and Soroban milestone escrow data flow sequences ([PR #1637](https://github.com/yosemite01/stellar-creator-portfolio/pull/1637)).
 * 🛡️ **OphirPay**: Engineered zero-lockup 3-state Circuit Breaker with automated Soroban RPC failover & health recovery ([PR #1532](https://github.com/OphirPay/OphirPay/pull/1532)).
 * ⚙️ **Protoprimer**: Architected robust POSIX fallback and `ShellDriverSh` runtime isolation ([PR #144](https://github.com/uvsmtid/protoprimer/pull/144)).
 
